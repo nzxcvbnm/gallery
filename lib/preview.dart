@@ -9,8 +9,9 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstState extends State<FirstPage> {
+  static int i = 1;
   static StorageReference ref =
-      FirebaseStorage.instance.ref().child('kici.jpg');
+      FirebaseStorage.instance.ref().child('images').child('image$i.jpg');
   Uint8List imageFile;
 
   int max = 7 * 1024 * 1024;
@@ -20,6 +21,7 @@ class _FirstState extends State<FirstPage> {
       this.setState(() {
         imageFile = data;
       });
+      i++;
     });
   }
 

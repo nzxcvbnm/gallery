@@ -33,8 +33,10 @@ class SecondState extends State<SecondPage> {
         ));
   }
 
+  static int i = 0;
   Widget enableUpload() {
     if (image == null) return CircularProgressIndicator();
+    i++;
     return ListView(
       shrinkWrap: true,
       children: <Widget>[
@@ -44,7 +46,7 @@ class SecondState extends State<SecondPage> {
               final StorageReference ref = FirebaseStorage.instance
                   .ref()
                   .child('images')
-                  .child('image.jpg');
+                  .child('image$i.jpg');
               ref.putFile(image);
             })
       ],

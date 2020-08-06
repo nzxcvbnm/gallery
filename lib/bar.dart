@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'first.dart';
-import 'second.dart';
+import 'preview.dart';
+import 'upload.dart';
 
 class Bar extends StatefulWidget {
   @override
