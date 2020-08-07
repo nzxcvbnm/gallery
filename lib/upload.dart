@@ -19,6 +19,15 @@ class SecondState extends State<SecondPage> {
     });
   }
 
+  addImage() async {
+    final StorageReference ref =
+        FirebaseStorage.instance.ref().child('images').child('image4.jpg');
+    StorageUploadTask uploadTask = ref.putFile(image);
+    String downloadUrl =
+        await (await uploadTask.onComplete).ref.getDownloadURL();
+    Firestore.instance.collection('images').add({"url": downloadUrl});
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,13 +53,7 @@ class SecondState extends State<SecondPage> {
         RaisedButton(
             child: Text('upload'),
             onPressed: () {
-              final StorageReference ref = FirebaseStorage.instance
-                  .ref()
-                  .child('images')
-                  .child('image4.jpg');
-              ref.putFile(image);
-              final String downloadUrl = ref.getDownloadURL().toString();
-              Firestore.instance.collection('images').add({"url": downloadUrl});
+              addImage();
             })
       ],
     );
