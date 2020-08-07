@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,7 +12,7 @@ class SecondPage extends StatefulWidget {
 class SecondState extends State<SecondPage> {
   static File image;
 
-  Future getImage() async {
+  Future pickImage() async {
     var tempImage = await ImagePicker().getImage(source: ImageSource.gallery);
     setState(() {
       image = File(tempImage.path);
@@ -28,7 +29,7 @@ class SecondState extends State<SecondPage> {
             RaisedButton(
                 child: Text('pick image'),
                 color: Colors.amberAccent,
-                onPressed: getImage),
+                onPressed: pickImage),
           ],
         ));
   }
@@ -46,8 +47,10 @@ class SecondState extends State<SecondPage> {
               final StorageReference ref = FirebaseStorage.instance
                   .ref()
                   .child('images')
-                  .child('image$i.jpg');
+                  .child('image4.jpg');
               ref.putFile(image);
+              final String downloadUrl = ref.getDownloadURL().toString();
+              Firestore.instance.collection('images').add({"url": downloadUrl});
             })
       ],
     );
