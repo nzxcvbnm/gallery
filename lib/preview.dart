@@ -1,55 +1,23 @@
 import 'dart:ffi';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FirstPage extends StatefulWidget {
+import 'main.dart';
+
+class Preview extends StatefulWidget {
   @override
-  _FirstState createState() => _FirstState();
+  _PreviewState createState() => _PreviewState();
 }
 
-class _FirstState extends State<FirstPage> {
-  static int i = 1;
-  static StorageReference ref =
-      FirebaseStorage.instance.ref().child('images').child('image4.jpg');
-  Uint8List imageFile;
-
-  int max = 7 * 1024 * 1024;
-
-  getImage() {
-    ref.getData(max).then((data) {
-      this.setState(() {
-        imageFile = data;
-      });
-      i++;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getImage();
-  }
-
+class _PreviewState extends State<Preview> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(brightness: Brightness.dark),
-      home: ListView(
-        children: <Widget>[Widgett(imageFile)],
-      ),
-    );
-  }
-}
-
-class Widgett extends StatelessWidget {
-  Uint8List imageFile;
-
-  Widgett(this.imageFile);
-
-  @override
-  Widget build(BuildContext context) {
-    if (imageFile == null) return Center(child: CircularProgressIndicator());
-    return Container(child: Image.memory(imageFile));
+        theme: ThemeData(brightness: Brightness.dark),
+        home: ListView(
+          children: listOfPics,
+          //Image.network(snapshot.data.documents[i]['url']),
+        ));
   }
 }

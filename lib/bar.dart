@@ -11,8 +11,8 @@ class Bar extends StatefulWidget {
 class BarState extends State<Bar> {
   int tabIndex = 0;
   List<Widget> pages = [
-    FirstPage(),
-    SecondPage(),
+    Preview(),
+    Upload(),
   ];
 
   @override
