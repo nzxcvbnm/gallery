@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'preview.dart';
-import 'upload.dart';
+import 'uploadfrompicker.dart';
+import 'main.dart';
+import 'camera/cam.dart';
 
 class Bar extends StatefulWidget {
   @override
@@ -12,7 +14,7 @@ class BarState extends State<Bar> {
   int tabIndex = 0;
   List<Widget> pages = [
     Preview(),
-    Upload(),
+    Cam(camera: firstCamera),
   ];
 
   @override

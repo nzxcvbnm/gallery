@@ -14,7 +14,10 @@ dependencies:
   flutter:
     sdk: flutter
   cloud_firestore:
-  
+  camera:
+  path_provider:
+  gallery_saver:
+  image_cropper:
 
 
   # The following adds the Cupertino Icons font to your application.
