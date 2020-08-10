@@ -17,7 +17,11 @@ void main() {
             return Center(child: CircularProgressIndicator());
           for (int i = 0; i < snapshot.data.documents.length; i++) {
             listOfUrls.add(snapshot.data.documents[i]['url']);
-            listOfPics.add(Image.network(listOfUrls[i]));
+            listOfPics.add(Card(
+                color: Colors.black12,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: Image.network(listOfUrls[i])));
           }
           return Bar();
         }),

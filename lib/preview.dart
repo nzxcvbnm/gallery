@@ -1,7 +1,4 @@
-import 'dart:ffi';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'main.dart';
 
@@ -15,9 +12,14 @@ class _PreviewState extends State<Preview> {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(brightness: Brightness.dark),
-        home: ListView(
-          children: listOfPics,
-          //Image.network(snapshot.data.documents[i]['url']),
+        home: Container(
+          color: Colors.black38,
+          child: ListWheelScrollView(
+            itemExtent: 500,
+            diameterRatio: 10,
+            children: listOfPics,
+            //Image.network(snapshot.data.documents[i]['url']),
+          ),
         ));
   }
 }
